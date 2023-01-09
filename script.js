@@ -121,6 +121,8 @@ function update(location){
     button2.onclick = location["button functions"][1];
     button3.onclick = location["button functions"][2];
     text.innerText = location.text; //dot notn doesnt' work for arrays
+    monsterStats.style.display = "none";
+
 }
 
 function goTown() {
