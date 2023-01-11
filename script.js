@@ -79,7 +79,7 @@ const locations = [
         name: "cave",
         "button text": ["Fight slime","Fight fanged beast","Go to town square"],
         "button functions": [fightSlime, fightBeast, goTown],
-        text: "You enter the cave ande see some monsters."
+        text: "You enter the cave and see some monsters."
     },
     {
 		name: "fight",
@@ -97,7 +97,7 @@ const locations = [
 		name: "lose",
 		"button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
 		"button functions": [restart, restart, restart],
-		text: "RIP you died... ☠️"
+		text: "RIP you died...LOL ☠️"
 	},
 	{
 		name: "win",
