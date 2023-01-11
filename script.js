@@ -37,7 +37,7 @@ const weapons = [
     {
         name: " sword",
         power: 75,
-    }
+    },
     {
         name: " magic wand",
         power: 100,
@@ -46,17 +46,17 @@ const weapons = [
 
 const monsters = [
     {
-      name: "slime",
+      name: "Slime",
       level: 2,
       health: 15
     },
     {
-      name: "fanged beast",
+      name: "Rock Golum",
       level: 8,
       health: 60
     },
     {
-      name: "dragon",
+      name: "Dragon",
       level: 20,
       health: 300
     }
