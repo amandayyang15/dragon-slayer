@@ -19,19 +19,27 @@ const monsterHealthText = document.querySelector("#monsterHealth");
 
 const weapons = [
     {
-        name: "stick",
+        name: " stick",
         power: 5
     },
     {
-        name: "dagger",
-        power: 30,
+        name: " dagger",
+        power: 10,
     },
     {
-        name: "claw hammer",
+        name: " axe",
+        power: 25,
+    },
+    {
+        name: " mace",
         power: 50,
     },
     {
-        name: "sword",
+        name: " sword",
+        power: 75,
+    }
+    {
+        name: " magic wand",
         power: 100,
     }
 ]
@@ -162,7 +170,7 @@ function buyWeapon() {
             let newWeapon = weapons[currentWeapon].name;
     		text.innerText = "You now have a " + newWeapon + ".";
             inventory.push(newWeapon);
-            text.innerText += " In your inventory you have: " + inventory;
+            text.innerText += " In your inventory you have:" + inventory;
     	}
         else {
     		text.innerText = "You do not have enough gold to buy a weapon.";
@@ -185,7 +193,7 @@ function sellWeapon() {
         text.innerText += " In your inventory you have: " + inventory;
 	}
     else {
-    	text.innerText = "Don't sell your only weaponS!";
+    	text.innerText = "Don't sell your only weapon!";
   	}
 }
 
