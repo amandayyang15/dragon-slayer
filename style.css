@@ -1,26 +1,163 @@
 @font-face {
   font-family: 'partika';
-  src: url('assets/Partita-Regular.otf') format('otf');
+  src: url('assets/Partita-Regular.otf') format('opentype');
+}
+
+:root {
+  --color1: #0E1010;
+  --color2: #211F1C; /*text*/
+  --color3: #639A90;
+  --color4: #35322E;
+  --color5: #A6AB9C;
+  --color6: #E8E8E8;
+  --color7: #CDE896; /*green*/
+  --color8: #FFDC27; /*yellow*/
+  --fz-xxs: 12px;
+  --fz-xs: 14px;
+  --fz-sm: 16px;
+  --fz-md: 20px;
+  --fz-lg: 22px;
+  --fz-xl: 24px;
+  --fz-xxl: 32px;
+  --fz-heading: 36px;
+}
+
+h1 {
+  font-size: var(--fz-xl);
+  font-weight: normal;
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+h2 {
+  font-size: var(--fz-lg);
+  font-weight: normal;
+  margin-block: 0;
+  margin-inline: 0;
+}
+
+p {
+  font-size: var(--fz-md);
+  margin-block: 0;
+
 }
 
 body {
-  font-style: partika;
-  background-color: rgb(22, 23, 26);
+  font-family: 'partika';
+  color: white;
+  background-color: var(--color1);
+  font-style: none;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: 1fr 580px 1fr;
+  grid-template-rows: min-content;
+  width: 850px;
+  background-color: var(--color4);
+  margin: auto;
+  border-radius: 15px;
+}
+
+/* STATS */
+#stats {
+  background: var(--color3);
+  padding: 15px;
+  border-radius: 15px 0 0 15px;
+}
+
+/* MIDDLE PANE */
+.middlePane {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  grid-template-rows: min-content;
+  padding: 15px;
+  gap: 15px;
+}
+
+.middlePane img  {
+  width: 100%;
+  height: auto;
+  grid-column: 1 / span 2;
+  vertical-align: middle;
+  border-radius: 5px;
 }
 
 #text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color6);
+  color: var(--color2);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#monsterStats {
+  position: absolute;
+  /* display: none; */
+  margin: 0;
+  border: 1px black solid;
+  color: white;
+  padding: 5px;
+  background-color: rgb(138, 43, 43);
+}
+
+#controls {
+  display: flex;
+  flex-flow: column;
+  gap: 10px
+}
+
+.button {
+  font-family: 'partika';
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  font-size: var(--fz-sm);
+  background-color: var(--color7); /* Green */
+  border: none;
+  color: var(--color2);
+  height: 30px;
+  padding: 0 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 210px;
+}
+
+.button:hover{
+  background-color: #f9ffc2;
+}
+
+/* WEAPONS */
+.weapons {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  min-width: 0;
+  max-height: 500px;
+  background: var(--color5);
+  padding: 15px;
+  border-radius: 0 15px 15px 0;
+}
+
+.weapons img {
+  max-height: 100px;
+}
+
+
+
+
+
+/* #text {
   background-color: rgb(34, 34, 49);
   color: white;
   padding: 10px;
 }
 
 #game {
-  max-width: 500px;
-  max-height: 700px;
-  background-color: rgb(175, 173, 179);
-  color: white;
-  margin: 0 auto;
-  padding: 10px;
+
 }
 
 #controls {
@@ -35,14 +172,8 @@ body {
   padding: 5px;
 }
 
-#monsterStats {
-  display: none;
-  border: 1px black solid;
-  color: white;
-  padding: 5px;
-  background-color: rgb(138, 43, 43);
-}
+
 
 .stat {
   padding-right: 10px;
-}
+} */

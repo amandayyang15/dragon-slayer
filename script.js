@@ -71,13 +71,13 @@ const locations = [
     },
     {
         name: "store",
-        "button text": ["Buy 10 health (10 gold)","Buy weapon (30 gold)","Go to town square"],
+        "button text": ["Buy 10 health (🪙10)","Buy weapon (🪙30)","Go to town square"],
         "button functions": [buyHealth, buyWeapon, goTown],
         text: "You enter the store."
     },
     {
         name: "cave",
-        "button text": ["Fight slime","Fight fanged beast","Go to town square"],
+        "button text": ["Fight slime","Fight golem","Go to town square"],
         "button functions": [fightSlime, fightBeast, goTown],
         text: "You enter the cave and see some monsters."
     },
@@ -309,7 +309,7 @@ function pick(guess) {
     text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
 
     for (let i = 0; i < 10; i++) {
-        text.innerText += numbers[i] + "\n";
+        text.innerText += numbers[i] + " ";
     }
 
     if (numbers.indexOf(guess) !== -1) {
