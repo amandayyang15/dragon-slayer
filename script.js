@@ -5,6 +5,17 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
+let kills = 0;
+let images = document.querySelectorAll("#svgs");
+let element = document.querySelector("#svgs");
+
+function changeStyle(){
+    var element = document.getElementById("svgs");
+    element.style.opacity = "0.2";
+}
+
+changeStyle();
+
 
 const button1 = document.querySelector("#button1"); //const: for constant variable
 const button2 = document.querySelector("#button2");
@@ -13,34 +24,45 @@ const text = document.querySelector("#text");
 const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
+const monsterKillText = document.querySelector("#killText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterNameText = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+
 const weapons = [
     {
         name: " stick",
-        power: 5
+        power: 5,
+        image: 'stick.svg',
+
     },
     {
         name: " dagger",
         power: 10,
+        image: 'assets/axe.svg'
     },
     {
         name: " axe",
         power: 25,
+        image: 'assets/axe.svg'
+
     },
     {
-        name: " mace",
+        name: " face",
         power: 50,
+        image: 'assets/mace.svg'
+
     },
     {
         name: " sword",
         power: 75,
+        image: 'assets/sword.svg'
     },
     {
         name: " magic wand",
         power: 100,
+        image: 'assets/magic wang.svg'
     }
 ]
 
@@ -119,7 +141,7 @@ button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
-
+element.classList.add("saturated");
 
 function update(location){
     button1.innerText = location["button text"][0];
@@ -170,7 +192,8 @@ function buyWeapon() {
             let newWeapon = weapons[currentWeapon].name;
     		text.innerText = "You now have a " + newWeapon + ".";
             inventory.push(newWeapon);
-            text.innerText += " In your inventory you have:" + inventory;
+            text.innerText += " In your inventory you have: " + inventory;
+            weaponSaturation(newWeapon);
     	}
         else {
     		text.innerText = "You do not have enough gold to buy a weapon.";
@@ -182,6 +205,10 @@ function buyWeapon() {
         button2.innerText = "Sell weapon for 15 gold";
 		button2.onclick = sellWeapon;
 	}
+}
+
+function weaponSaturation(weapon){
+
 }
 
 function sellWeapon() {
@@ -237,6 +264,8 @@ function attack() {
 		lose();
 	} else if (monsterHealth <= 0) {
 		fighting === 2 ? winGame() : defeatMonster();
+        kills ++;
+        monsterKillText.innerText = kills;
 	}
 
 	if (Math.random() <= .1 && inventory.length !== 1) {
@@ -281,10 +310,12 @@ function restart() {
 	health = 100;
 	gold = 50;
 	currentWeapon = 0;
+    kills = 0;
 	inventory = ["stick"];
 	goldText.innerText = gold;
 	healthText.innerText = health;
 	xpText.innerText = xp;
+    monsterKillText.innerText = kills
 	goTown();
 }
 
@@ -309,7 +340,7 @@ function pick(guess) {
     text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
 
     for (let i = 0; i < 10; i++) {
-        text.innerText += numbers[i] + " ";
+        text.innerText += numbers[i] + "\n";
     }
 
     if (numbers.indexOf(guess) !== -1) {

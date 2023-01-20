@@ -43,14 +43,19 @@ p {
 }
 
 body {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh;
   font-family: 'partika';
   color: white;
   background-color: var(--color1);
   font-style: none;
+  margin: 0;
 }
 
 #game {
   display: grid;
+  align-self: center;
   grid-template-columns: 1fr 580px 1fr;
   grid-template-rows: min-content;
   width: 850px;
@@ -91,6 +96,7 @@ body {
   color: var(--color2);
   padding: 5px;
   border-radius: 5px;
+  text-align: center;
 }
 
 #monsterStats {
@@ -119,11 +125,10 @@ body {
   border: none;
   color: var(--color2);
   height: 30px;
-  padding: 0 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  width: 210px;
+  width: 205px;
 }
 
 .button:hover{
@@ -144,6 +149,11 @@ body {
 
 .weapons img {
   max-height: 100px;
+  opacity: 0.25;
+}
+
+.saturated {
+  opacity: 1;
 }
 
 
