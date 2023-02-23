@@ -1,21 +1,13 @@
 let xp = 0;
 let health = 100;
-let gold = 50;
+let gold = 50; //UPDATESSSSS
 let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["stick"];
 let kills = 0;
-let images = document.querySelectorAll("#svgs");
-let element = document.querySelector("#svgs");
-
-function changeStyle(){
-    var element = document.getElementById("svgs");
-    element.style.opacity = "0.2";
-}
-
-changeStyle();
-
+// let images = document.querySelectorAll("#svgs");
+// let element = document.querySelector("#svgs");
 
 const button1 = document.querySelector("#button1"); //const: for constant variable
 const button2 = document.querySelector("#button2");
@@ -29,40 +21,48 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterNameText = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+//images
+const golemIMG = document.querySelector("#golemIMG");
+const slimeIMG = document.querySelector("#slimeIMG");
+const dragonIMG = document.querySelector("#dragonIMG");
+
+const stickIMG = document.querySelector("#stickIMG");
+const axeIMG = document.querySelector("#axeIMG");
+const maceIMG = document.querySelector("#maceIMG");
+const swordIMG = document.querySelector("#swordIMG");
+const wandIMG = document.querySelector("#wandIMG");
+
+const townsquareIMG = document.querySelector("#townsquareIMG");
+const storeIMG = document.querySelector("#storeIMG");
+const caveIMG = document.querySelector("#caveIMG");
+
 
 const weapons = [
     {
         name: " stick",
         power: 5,
-        image: 'stick.svg',
-
-    },
-    {
-        name: " dagger",
-        power: 10,
-        image: 'assets/axe.svg'
+        image: stickIMG,
     },
     {
         name: " axe",
-        power: 25,
-        image: 'assets/axe.svg'
-
+        power: 20,
+        image: axeIMG,
     },
     {
-        name: " face",
+        name: " mace",
         power: 50,
-        image: 'assets/mace.svg'
+        image: maceIMG,
 
     },
     {
         name: " sword",
         power: 75,
-        image: 'assets/sword.svg'
+        image: swordIMG,
     },
     {
         name: " magic wand",
         power: 100,
-        image: 'assets/magic wang.svg'
+        image: wandIMG,
     }
 ]
 
@@ -70,17 +70,22 @@ const monsters = [
     {
       name: "Slime",
       level: 2,
-      health: 15
+      health: 15,
+      image: slimeIMG,
     },
     {
-      name: "Rock Golum",
+      name: "Rock Golem",
       level: 8,
-      health: 60
+      health: 60,
+      image: golemIMG,
+
     },
     {
       name: "Dragon",
       level: 20,
-      health: 300
+      health: 300,
+      image: dragonIMG,
+
     }
   ];
 
@@ -90,58 +95,70 @@ const locations = [
         "button text": ["Go to store","Go to cave","Fight dragon"],
         "button functions": [goStore, goCave, fightDragon],
         text: "You are in the town square. You see a sign that says \"Store\".",
+        image: townsquareIMG,
     },
     {
         name: "store",
         "button text": ["Buy 10 health (🪙10)","Buy weapon (🪙30)","Go to town square"],
         "button functions": [buyHealth, buyWeapon, goTown],
-        text: "You enter the store."
+        text: "You enter the store.",
+        image: storeIMG,
     },
     {
         name: "cave",
         "button text": ["Fight slime","Fight golem","Go to town square"],
         "button functions": [fightSlime, fightBeast, goTown],
-        text: "You enter the cave and see some monsters."
+        text: "You enter the cave and see some monsters.",
+        image: caveIMG,
+
     },
     {
 		name: "fight",
 		"button text": ["Attack", "Dodge", "Run"],
 		"button functions": [attack, dodge, goTown],
-		text: "You are fighting a monster."
+		text: "You are fighting a monster.",
+        image: caveIMG,
 	},
 	{
 		name: "kill monster",
 		"button text": ["Go to town square", "Go to town square", "Go to town square"],
 		"button functions": [goTown, goTown, easterEgg],
-		text: 'The monster dies. You gain experience points and find gold.'
+		text: 'The monster dies. You gain experience points and find gold.',
+        image: caveIMG,
 	},
 	{
 		name: "lose",
 		"button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
 		"button functions": [restart, restart, restart],
-		text: "RIP you died...LOL ☠️"
+		text: "LOL...you died ☠️",
+        image: caveIMG,
 	},
 	{
 		name: "win",
 		"button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
 		"button functions": [restart, restart, restart],
-		text: "Congrats you slayed the dragon! YOU WIN THE GAME! 🎉"
+		text: "Congrats you slayed the dragon! YOU WIN THE GAME! 🎉",
+        image: caveIMG,
     },
 	{
 		name: "easter egg",
 		"button text": ["2", "8", "Go to town square?"],
 		"button functions": [pickTwo, pickEight, goTown],
-		text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
+		text: "You find a secret game. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!",
+        image: caveIMG,
+
 	}
 
 ]
 
 //initialize buttons
+monsterStats.style.display = "none";
+weapons[currentWeapon].image.style.opacity = "1";
+
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
 
-element.classList.add("saturated");
 
 function update(location){
     button1.innerText = location["button text"][0];
@@ -156,19 +173,55 @@ function update(location){
 }
 
 function goTown() {
-    update(locations[0]);
+    let loc = 0;
+    update(locations[loc]);
+    locations[loc].image.style.zIndex = "1";
+    for (i = 0; i < locations.length; i++){
+        if (i != loc){
+            locations[i].image.style.zIndex = "0";
+        }
+    }
+    for (x = 0; x < monsters.length; x++){
+        monsters[x].image.style.zIndex = "-1";
+    }
 }
 
 function goStore() {
-    update(locations[1]);
+    let loc = 1;
+    update(locations[loc]);
+    locations[loc].image.style.zIndex = "1";
+    for (i = 0; i < locations.length; i++){
+        if (i != loc){
+            locations[i].image.style.zIndex = "0";
+        }
+    }
+    for (x = 0; x < monsters.length; x++){
+        monsters[x].image.style.zIndex = "-1";
+    }
 }
 
 function goCave() {
-    update(locations[2]);
+    let loc = 2;
+    update(locations[loc]);
+    locations[loc].image.style.zIndex = "1";
+    // for (i = 0; i < locations.length; i++){
+    //     if (i != loc){
+    //         locations[i].image.style.zIndex = "0";
+    //     }
+    // }
+    for (x = 0; x < monsters.length; x++){
+        monsters[x].image.style.zIndex = "-1";
+    }
 }
 
 function fightDragon() {
-    console.log("Fighting dragon.")
+    let loc = 3;
+    locations[loc].image.style.zIndex = "1";
+    for (i = 0; i < locations.length; i++){
+        if (i != loc){
+            locations[i].image.style.zIndex = "0";
+        }
+    }
 }
 
 function buyHealth() {
@@ -193,7 +246,7 @@ function buyWeapon() {
     		text.innerText = "You now have a " + newWeapon + ".";
             inventory.push(newWeapon);
             text.innerText += " In your inventory you have: " + inventory;
-            weaponSaturation(newWeapon);
+            weapons[currentWeapon].image.style.opacity = "1";
     	}
         else {
     		text.innerText = "You do not have enough gold to buy a weapon.";
@@ -202,14 +255,12 @@ function buyWeapon() {
 
     else {
 		text.innerText = "You already have the most powerful weapon!";
-        button2.innerText = "Sell weapon for 15 gold";
+        button2.innerText = "Sell weapon for 🪙15";
 		button2.onclick = sellWeapon;
 	}
 }
 
-function weaponSaturation(weapon){
-
-}
+let s = 0;
 
 function sellWeapon() {
 	if (inventory.length > 1) {
@@ -218,7 +269,9 @@ function sellWeapon() {
         let currentWeapon = inventory.shift();
         text.innerText = "You sold a " + currentWeapon + ".";
         text.innerText += " In your inventory you have: " + inventory;
-	}
+        weapons[s].image.style.opacity = "0.1";
+        s++;
+    }
     else {
     	text.innerText = "Don't sell your only weapon!";
   	}
@@ -245,6 +298,20 @@ function goFight() {
     monsterStats.style.display = "block";
     monsterNameText.innerText = monsters[fighting].name;
 	monsterHealthText.innerText = monsterHealth;
+    let loc = 2;
+    for (i = 0; i < locations.length; i++){
+        if (i != loc){
+            locations[i].image.style.zIndex = "0";
+        }
+    }
+    monsters[fighting].image.style.opacity="1";
+    monsters[fighting].image.style.zIndex = "2";
+    for (i = 0; i < monsters.length; i++){
+        if (i != fighting){
+            monsters[i].image.style.zIndex = "-1";
+        }
+    }
+
 }
 
 function attack() {
@@ -266,6 +333,8 @@ function attack() {
 		fighting === 2 ? winGame() : defeatMonster();
         kills ++;
         monsterKillText.innerText = kills;
+            monsters[fighting].image.style.zIndex = "2";
+
 	}
 
 	if (Math.random() <= .1 && inventory.length !== 1) {
@@ -294,6 +363,7 @@ function defeatMonster() {
     xp += monsters[fighting].level;
     goldText.innerText = gold;
 	xpText.innerText = xp;
+    monsters[fighting].image.style.opacity="0.2";
     update(locations[4]);
 }
 
@@ -316,6 +386,11 @@ function restart() {
 	healthText.innerText = health;
 	xpText.innerText = xp;
     monsterKillText.innerText = kills
+    for(var i = 1; i < weapons.length; i++) {
+        weapons[i].image.style.opacity = "0.25";
+    }
+    weapons[0].image.style.opacity = "1";
+    let s = 0;
 	goTown();
 }
 
@@ -340,17 +415,17 @@ function pick(guess) {
     text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
 
     for (let i = 0; i < 10; i++) {
-        text.innerText += numbers[i] + "\n";
+        text.innerText += numbers[i] + ", ";
     }
 
     if (numbers.indexOf(guess) !== -1) {
-        text.innerText += "Right! You win 20 gold!"
+        text.innerText += "\n Right! You win 🪙20 !"
         gold += 20;
         goldText.innerText = gold;
     }
 
     else {
-        text.innerText += "Wrong! You lose 10 health!"
+        text.innerText += "\n Wrong! You lose 10 health!"
         health -= 10;
         healthText.innerText = health
         if (health <= 0) {

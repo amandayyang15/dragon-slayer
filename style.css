@@ -80,12 +80,52 @@ body {
   gap: 15px;
 }
 
-.middlePane img  {
+.backgroundimg {
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 275px;
   grid-column: 1 / span 2;
   vertical-align: middle;
-  border-radius: 5px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backgroundimg img {
+  position: absolute;
+    border-radius: 5px;
+}
+
+.backgroundimg :nth-child(1) {
+  display: block;
+  z-index: 1;
+}
+
+.backgroundimg :nth-child(2) {
+  display: block;
+  z-index: 0;
+}
+
+.backgroundimg :nth-child(3) {
+  display: block;
+  z-index: 0;
+}
+
+.backgroundimg :nth-child(4) {
+  display: block;
+  z-index: 0;
+}
+
+.backgroundimg :nth-child(5) {
+  display: block;
+  z-index: 0;
+}
+
+.backgroundimg :nth-child(6) {
+  display: block;
+  z-index: 0;
 }
 
 #text {
@@ -101,12 +141,12 @@ body {
 
 #monsterStats {
   position: absolute;
-  /* display: none; */
   margin: 0;
-  border: 1px black solid;
   color: white;
   padding: 5px;
   background-color: rgb(138, 43, 43);
+  z-index: 100;
+
 }
 
 #controls {
@@ -129,6 +169,7 @@ body {
   text-decoration: none;
   display: inline-block;
   width: 205px;
+  cursor: pointer;
 }
 
 .button:hover{
@@ -151,39 +192,3 @@ body {
   max-height: 100px;
   opacity: 0.25;
 }
-
-.saturated {
-  opacity: 1;
-}
-
-
-
-
-
-/* #text {
-  background-color: rgb(34, 34, 49);
-  color: white;
-  padding: 10px;
-}
-
-#game {
-
-}
-
-#controls {
-  border: 1px black solid;
-  padding: 5px;
-}
-
-#stats {
-  border: 1px black solid;
-  color: black;
-
-  padding: 5px;
-}
-
-
-
-.stat {
-  padding-right: 10px;
-} */
